@@ -34,7 +34,10 @@ final class ContentCreateContentTypeChoiceLoader implements ChoiceLoaderInterfac
      */
     public function setRestrictedContentTypeIds(array $restrictedContentTypeIds): self
     {
-        $this->restrictedContentTypesIds = $restrictedContentTypeIds;
+        $this->restrictedContentTypesIds = \array_map(
+            static fn (string $contentTypeId) => (int) $contentTypeId,
+            $restrictedContentTypeIds
+        );
 
         return $this;
     }
